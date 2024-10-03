@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css')}}">
     @stack("styles")
 </head>
+
 <body class="body">
     <div id="wrapper">
         <div id="page" class="">
@@ -39,8 +41,8 @@
                 <div class="section-menu-left">
                     <div class="box-logo">
                         <a href="{{route('admin.index')}}" id="site-logo-inner">
-                            <img class="" id="logo_header" alt="" src="images/logo/logo.png"
-                                data-light="images/logo/logo.png" data-dark="images/logo/logo.png">
+                            <img class="" id="logo_header_1" alt="" src="{{ asset('images/logo/logo.png') }}"
+                                data-light="{{ asset('images/logo/logo.png') }}" data-dark="{{ asset('images/logo/logo.png') }}">
                         </a>
                         <div class="button-show-hide">
                             <i class="icon-menu-left"></i>
@@ -85,12 +87,12 @@
                                     </a>
                                     <ul class="sub-menu">
                                         <li class="sub-menu-item">
-                                            <a href="add-brand.html" class="">
+                                            <a href="#" class="">
                                                 <div class="text">New Brand</div>
                                             </a>
                                         </li>
                                         <li class="sub-menu-item">
-                                            <a href="brands.html" class="">
+                                            <a href="{{route('admin.brands')}}" class="">
                                                 <div class="text">Brands</div>
                                             </a>
                                         </li>
@@ -161,14 +163,15 @@
                                 </li>
 
                                 <li class="menu-item">
-                                <form action="{{route('admin.logout')}}" method="POST" id="logout-form" class="d-flex justify-content-between align-items-center p-3">
-                                @csrf
-                                <button type="submit" 
-                                    class="btn btn-secondary rounded-pill btn-lg" style="width: 100%; height: 40px;"
-                                    onmouseover="this.classList.add('btn-dark'); this.classList.remove('btn-secondary');" 
-                                    onmouseout="this.classList.remove('btn-dark'); this.classList.add('btn-secondary');">
-                                Logout
-                                </button>
+                                    <form action="{{route('admin.logout')}}" method="POST" id="logout-form" class="d-flex justify-content-between align-items-center p-3">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn btn-secondary rounded-pill btn-lg" style="width: 100%; height: 40px;"
+                                            onmouseover="this.classList.add('btn-dark'); this.classList.remove('btn-secondary');"
+                                            onmouseout="this.classList.remove('btn-dark'); this.classList.add('btn-secondary');">
+                                            Logout
+                                        </button>
+                                    </form>
                                 </li>
                             </ul>
                         </div>
@@ -180,9 +183,9 @@
                         <div class="wrap">
                             <div class="header-left">
                                 <a href="{{ route('home.index')}}">
-                                    <img class="" id="logo_header_mobile" alt="" src="images/logo/logo.png"
-                                        data-light="images/logo/logo.png" data-dark="images/logo/logo.png"
-                                        data-width="154px" data-height="52px" data-retina="images/logo/logo.png">
+                                    <img class="" id="logo_header_mobile" alt="" src="{{ asset('images/logo/logo.png') }}"
+                                        data-light="{{ asset('images/logo/logo.png') }}" data-dark="{{ asset('images/logo/logo.png') }}"
+                                        data-width="154px" data-height="52px" data-retina="{{ asset('images/logo/logo.png') }}">
                                 </a>
                                 <div class="button-show-hide">
                                     <i class="icon-menu-left"></i>
@@ -192,7 +195,7 @@
                                 <form class="form-search flex-grow">
                                     <fieldset class="name">
                                         <input type="text" placeholder="Search here..." class="show-search" name="name"
-                                            tabindex="2" value="" aria-required="true" >
+                                            tabindex="2" value="" aria-required="true">
                                     </fieldset>
                                     <div class="button-submit">
                                         <button class="" type="submit"><i class="icon-search"></i></button>
@@ -440,15 +443,16 @@
                                                 </a>
                                             </li>
                                             <li class="menu-item">
-                                            <form action="{{route('admin.logout')}}" method="POST" id="logout-form" >
-                                            @csrf
-                                            
-                                            <button type="submit" 
-                                                class="btn btn-secondary rounded-pill btn-lg"  style="width: 100%;"
-                                                onmouseover="this.classList.add('btn-dark'); this.classList.remove('btn-secondary');" 
-                                                onmouseout="this.classList.remove('btn-dark'); this.classList.add('btn-secondary');">
-                                            Logout
-                                            </button>
+                                                <form action="{{route('admin.logout')}}" method="POST" id="logout-form">
+                                                    @csrf
+
+                                                    <button type="submit"
+                                                        class="btn btn-secondary rounded-pill btn-lg" style="width: 100%;"
+                                                        onmouseover="this.classList.add('btn-dark'); this.classList.remove('btn-secondary');"
+                                                        onmouseout="this.classList.remove('btn-dark'); this.classList.add('btn-secondary');">
+                                                        Logout
+                                                    </button>
+                                                </form>
                                             </li>
                                         </ul>
                                     </div>
@@ -460,7 +464,7 @@
                     <div class="main-content">
                         @yield('content')
 
-      
+
                         <div class="bottom-page">
                             <div class="body-text">Copyright © 2024 SurfsideMedia</div>
                         </div>
@@ -473,32 +477,33 @@
 
     <script src="{{ asset('js/jquery.min.js')}}"></script>
     <script src="{{ asset('js/bootstrap.min.js')}}"></script>
-    <script src="{{ asset('js/bootstrap-select.min.js')}}"></script>   
-    <script src="{{ asset('js/sweetalert.min.js')}}"></script>    
+    <script src="{{ asset('js/bootstrap-select.min.js')}}"></script>
+    <script src="{{ asset('js/sweetalert.min.js')}}"></script>
     <script src="{{ asset('js/apexcharts/apexcharts.js')}}"></script>
     <script src="{{ asset('js/main.js')}}"></script>
     <script>
-        (function ($) {
+        (function($) {
 
-            var tfLineChart = (function () {
+            var tfLineChart = (function() {
 
-                var chartBar = function () {
+                var chartBar = function() {
 
                     var options = {
                         series: [{
-                            name: 'Total',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
-                        }, {
-                            name: 'Pending',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
-                        },
-                        {
-                            name: 'Delivered',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
-                        }, {
-                            name: 'Canceled',
-                            data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
-                        }],
+                                name: 'Total',
+                                data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            }, {
+                                name: 'Pending',
+                                data: [0.00, 0.00, 0.00, 0.00, 0.00, 273.22, 208.12, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            },
+                            {
+                                name: 'Delivered',
+                                data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            }, {
+                                name: 'Canceled',
+                                data: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00, 0.00]
+                            }
+                        ],
                         chart: {
                             type: 'bar',
                             height: 325,
@@ -539,7 +544,7 @@
                         },
                         tooltip: {
                             y: {
-                                formatter: function (val) {
+                                formatter: function(val) {
                                     return "$ " + val + ""
                                 }
                             }
@@ -557,22 +562,22 @@
 
                 /* Function ============ */
                 return {
-                    init: function () { },
+                    init: function() {},
 
-                    load: function () {
+                    load: function() {
                         chartBar();
                     },
-                    resize: function () { },
+                    resize: function() {},
                 };
             })();
 
-            jQuery(document).ready(function () { });
+            jQuery(document).ready(function() {});
 
-            jQuery(window).on("load", function () {
+            jQuery(window).on("load", function() {
                 tfLineChart.load();
             });
 
-            jQuery(window).on("resize", function () { });
+            jQuery(window).on("resize", function() {});
         })(jQuery);
     </script>
     @stack("scripts")
