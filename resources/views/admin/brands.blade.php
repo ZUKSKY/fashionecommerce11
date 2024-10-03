@@ -1,6 +1,14 @@
 @extends('layouts.admin')
 
 @section('content')
+<style>
+    .table-striped  th:nth-child(1), .table-striped  td:nth-child(1) {
+        width: 100px;   
+    }
+    .table-striped  th:nth-child(2), .table-striped  td:nth-child(2) {
+        width: 250px;   
+    }
+</style>
 <div class="main-content-inner">                            
     <div class="main-content-wrap">
         <div class="flex items-center flex-wrap justify-between gap20 mb-27">
@@ -36,9 +44,9 @@
             </div>
             <div class="wg-table table-all-user">
                 <div class="table-responsive">
-
-                        <p class="alert alert-success"></p>
-                  
+                    @if(Session::has('status'))
+                        <p class="alert alert-success">{{Session::get('status')}}</p>
+                    @endif
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -62,15 +70,20 @@
                                     </div>  
                                 </td>
                                 <td>{{$brand->slug}}</td>
-                                <td><a href="#" target="_blank">{{$brand->products()->count()}}</a></td>
+                                <td><a href="#" target="_blank">0</td>
                                 <td>
-                                    <div class="list-icon-function">                                        
-                                        <div class="item edit">
+                                    <div class="list-icon-function">
+                                        <a href="{{route('admin.brand.edit', ['id' => $brand->id])}}">
+                                            <div class="item edit">
                                                 <i class="icon-edit-3"></i>
-                                        </div>
-                                        <div class="item text-danger delete">
+                                            </div>
+                                        </a>
+
+                                        <form action="#" method="POST">
+                                            <div class="item text-danger delete">
                                                 <i class="icon-trash-2"></i>
-                                        </div>
+                                            </div> 
+                                        </form>
                                     </div>
                                 </td>
                             </tr>
@@ -79,13 +92,11 @@
                     </table>                
                 </div>
             <div class="divider"></div>
+           
             <div class="flex items-center justify-between flex-wrap gap10 wgp-pagination">
                     {{$brands->links('pagination::bootstrap-5')}}
             </div>
-           
         </div>
     </div>
 </div>
-
-
 @endsection
